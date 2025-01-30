@@ -9,7 +9,7 @@ const tasksRoutes = require("./routes/tasksRoutes");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
- 
+
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
 }
