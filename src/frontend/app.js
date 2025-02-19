@@ -1,4 +1,4 @@
-const apiEndpoint = "https://container-leon-imeraj.calmpond-02ae4ede.switzerlandnorth.azurecontainerapps.io/api/tasks";
+const apiEndpoint = "azuresite.leonimeraj.emf-informatique.ch.";
 
 $(document).ready(function () {
   // Charger les tâches au démarrage
