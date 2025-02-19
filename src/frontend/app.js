@@ -1,4 +1,4 @@
-const apiEndpoint = "azuresite.leonimeraj.emf-informatique.ch.";
+const apiEndpoint = "azuresite.leonimeraj.emf-informatique.ch";
 
 $(document).ready(function () {
   // Charger les tâches au démarrage
