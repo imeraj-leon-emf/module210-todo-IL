@@ -17,6 +17,19 @@ jobs:
     permissions:
        id-token: write
        contents: read
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vérifier la présence de index.html
+        run: |
+          if [ -f frontend/index.html ]; then
+            echo "Le fichier index.html existe."
+          else
+            echo "Erreur : index.html n’existe pas !"
+            exit 1
+          fi
+
     steps:
       - uses: actions/checkout@v3
         with:
