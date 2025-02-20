@@ -41,7 +41,7 @@ jobs:
         id: idtoken
         with:
            script: |
-    return await require('@actions/core').getIDToken();
+            return await require('@actions/core').getIDToken();
 
       - name: Build And Deploy
         id: builddeploy
