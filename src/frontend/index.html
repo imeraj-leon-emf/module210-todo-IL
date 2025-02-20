@@ -1,26 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Une application de gestion de tâches simple et efficace.">
-  <title>Todo App améliorée</title>
-
-  <!-- Optimisation des performances -->
-  <link rel="preconnect" href="https://code.jquery.com">
+  <title>todo-app modifiée</title>
   <link rel="stylesheet" href="styles.css">
-  
-  <!-- Chargement optimisé de jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" async></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="app.js" defer></script>
 </head>
 <body>
   <div class="app-container">
     <h1>Ca c'est le todo-app qu'on a fait</h1>
     <form id="todo-form">
-      <label for="todo-input" class="visually-hidden">Nouvelle tâche</label>
-      <input type="text" id="todo-input" placeholder="Ajoute un truc gros" required aria-label="Ajouter une tâche">
-      <button type="submit" aria-label="Ajouter">Ajouter</button>
+      <input type="text" id="todo-input" placeholder="ajoute un truc gros" required>
+      <button type="submit">Add</button>
     </form>
     <ul id="todo-list"></ul>
   </div>
