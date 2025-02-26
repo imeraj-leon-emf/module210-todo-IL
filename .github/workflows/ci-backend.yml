@@ -1,26 +1,30 @@
-name: Build and save my Docker image to a registry
-
+name: Build and push Docker image to Exoscale
+ 
 on:
   push:
     branches:
-      - main  # Déclenchement lorsque le code est poussé sur main
-
+      - main
+    paths:
+      - 'src/backend/**'  # Déclenche uniquement si du code dans backend/ est modifié
+ 
+env:
+  REGISTRY: exo.container-registry.com
+  IMAGE_NAME: c213-emf/todo-app-imeraj
+ 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
-
+ 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Login to container registry
-        run: |
-          docker login -u ${{ secrets.EXOSCALE_USERNAME }} -p ${{ secrets.EXOSCALE_PASSWORD }} ${{ secrets.REGISTRY_URL }}
-
-      - name: Tag Docker image
-        run: |
-          docker tag acr300721210.azurecr.io/li/todo-app ${{ secrets.REGISTRY_URL }}/${{ secrets.IMAGE_NAME }}
-
-      - name: Push Docker image to registry
-        run: |
-          docker push ${{ secrets.REGISTRY_URL }}/${{ secrets.IMAGE_NAME }}
+ 
+      - name: Log in to Exoscale Registry
+        run: echo "${{ secrets.EXOSCALE_PASSWORD }}" | docker login -u "${{ secrets.EXOSCALE_USERNAME }}" --password-stdin ${{ env.REGISTRY }}
+ 
+      - name: Build Docker image
+        working-directory: ./src/backend
+        run: docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest .
+ 
+      - name: Push Docker image
+        run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
