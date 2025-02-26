@@ -1,0 +1,26 @@
+name: Build and save my Docker image to a registry
+
+on:
+  push:
+    branches:
+      - main  # Déclenchement lorsque le code est poussé sur main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to container registry
+        run: |
+          docker login -u ${{ secrets.EXOSCALE_USERNAME }} -p ${{ secrets.EXOSCALE_PASSWORD }} ${{ secrets.REGISTRY_URL }}
+
+      - name: Tag Docker image
+        run: |
+          docker tag acr300721210.azurecr.io/li/todo-app ${{ secrets.REGISTRY_URL }}/${{ secrets.IMAGE_NAME }}
+
+      - name: Push Docker image to registry
+        run: |
+          docker push ${{ secrets.REGISTRY_URL }}/${{ secrets.IMAGE_NAME }}
