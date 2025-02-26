@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/frontend/**'  # Déclenche uniquement si du code dans backend/ est modifié
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
